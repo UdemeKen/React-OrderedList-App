@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 
 export default function Orderedlist (){
+    const [text, setText] = useState('');
+    const [asc, setAsc] = useState(true);
+    const [list, setList] = useState([]);
+
+    function toggleOrder(){
+        setAsc((previousValue) => !previousValue)
+    }
+
     return(
         <>
             <input 
@@ -8,8 +16,10 @@ export default function Orderedlist (){
                 onKeyDown={() => {}}
             />
             <button 
-                className="sort-direction">
-                ⬇️⬆️
+                className="sort-direction"
+                onClick={toggleOrder}
+            >
+                {asc ? "⬇️" : "⬆️"}
             </button>
             <button 
                 className="clear-list">
