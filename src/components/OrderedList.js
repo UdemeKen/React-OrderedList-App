@@ -9,10 +9,21 @@ export default function Orderedlist (){
         setAsc((previousValue) => !previousValue)
     }
 
+    function updateText(event){
+        setText(event.target.value);
+    }
+
+    function clearList(){
+        setList([]);
+        setText('');
+    }
+
     return(
         <>
             <input 
-                className="add-item" 
+                className="add-item"
+                value={text}
+                onChange={updateText} 
                 onKeyDown={() => {}}
             />
             <button 
@@ -22,13 +33,17 @@ export default function Orderedlist (){
                 {asc ? "⬇️" : "⬆️"}
             </button>
             <button 
-                className="clear-list">
+                className="clear-list"
+                onClick={clearList}
+            >
                 🆑
             </button>
             <ul className="item-list">
-                <li>A</li>
-                <li>B</li>
-                <li>C</li>
+                {
+                    list.map((item, i) => {
+                        return<li key={i}>{item}</li>
+                    })
+                }
             </ul>
         </>
     )
