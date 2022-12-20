@@ -18,13 +18,23 @@ export default function Orderedlist (){
         setText('');
     }
 
+    function updateList(event){
+        if(event.key === 'Enter'){
+            if(text.trim() === ''){
+                return;
+            }
+            setList((previousList) => previousList.concat(text));
+            setText('');
+        }
+    }
+
     return(
         <>
             <input 
                 className="add-item"
                 value={text}
                 onChange={updateText} 
-                onKeyDown={() => {}}
+                onKeyDown={updateList}
             />
             <button 
                 className="sort-direction"
