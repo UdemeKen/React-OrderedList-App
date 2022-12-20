@@ -28,6 +28,17 @@ export default function Orderedlist (){
         }
     }
 
+    let listItems = [];
+    if(asc){
+        listItems = list.sort();
+    }else{
+        listItems = list.sort().reverse();
+    }
+
+    const orderedList = listItems.map((item, i) => {
+        return <li key={i}>{item}</li>
+    })
+
     return(
         <>
             <input 
@@ -49,11 +60,7 @@ export default function Orderedlist (){
                 🆑
             </button>
             <ul className="item-list">
-                {
-                    list.map((item, i) => {
-                        return<li key={i}>{item}</li>
-                    })
-                }
+                {orderedList}
             </ul>
         </>
     )
